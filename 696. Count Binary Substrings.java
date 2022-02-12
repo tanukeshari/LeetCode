@@ -86,5 +86,5 @@ class Solution {
 // TC: O(n); SC: O(1)
 // Success
 // Details 
-// Runtime: 13 ms, faster than 59.57% of Java online submissions for Count Binary Substrings.
-// Memory Usage: 49.1 MB, less than 27.08% of Java online submissions for Count Binary Substrings.
+// Runtime: 9 ms, faster than 78.74% of Java online submissions for Count Binary Substrings.
+// Memory Usage: 42.5 MB, less than 70.81% of Java online submissions for Count Binary Substrings.
