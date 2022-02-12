@@ -53,3 +53,38 @@ class Solution {
     }
 }
 // TC: O(n^2); SC: O(1)
+// Success
+// Details 
+// Runtime: 18 ms, faster than 33.07% of Java online submissions for Count Binary Substrings.
+// Memory Usage: 49.2 MB, less than 24.32% of Java online submissions for Count Binary Substrings.
+
+// Solution 2
+class Solution {
+    public int countBinarySubstrings(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        
+        int cntPre = 0;
+        int cntCur = 0;
+        int cntTotal = 0;
+        
+        for (int i = 0; i < s.length(); i += cntCur) {
+            cntCur = 0;
+            
+            while (i + cntCur < s.length() && s.charAt(i + cntCur) == s.charAt(i)) {
+                cntCur++;
+            }
+            
+            cntTotal += Math.min(cntPre, cntCur);
+            cntPre = cntCur;        
+        }
+        
+        return cntTotal;
+    }
+}
+// TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 13 ms, faster than 59.57% of Java online submissions for Count Binary Substrings.
+// Memory Usage: 49.1 MB, less than 27.08% of Java online submissions for Count Binary Substrings.
