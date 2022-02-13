@@ -104,3 +104,51 @@ class Solution {
 // Details 
 // Runtime: 1 ms, faster than 100.00% of Java online submissions for Intersection of Two Arrays II.
 // Memory Usage: 39 MB, less than 80.24% of Java online submissions for Intersection of Two Arrays II.
+
+// Solution 3
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1 == null || nums2 == null) {
+            return null;
+        }
+        
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        
+        if (len1 == 0 || len2 == 0) {
+            return new int[0];
+        }
+        
+        if (len1 > len2) {
+            return intersect(nums2, nums1);
+        }
+        
+        Map<Integer, Integer> hm = new HashMap<>();
+        
+        for (int num1 : nums1) {
+            hm.put(num1, hm.getOrDefault(num1, 0) + 1);
+        }
+        
+        int i = 0;
+        
+        for (int num2 : nums2) {
+            Integer cnt = hm.get(num2);
+            
+            if (cnt != null) {
+                nums1[i] = num2;
+                i++;
+                cnt--;
+                
+                if (cnt > 0) {
+                    hm.put(num2, cnt);
+                }
+                else {
+                    hm.remove(num2);
+                }   
+            }
+        }
+        
+        return Arrays.copyOfRange(nums1, 0, i);
+    }
+}
+// TC: O(n + m): SC: O(min(n, m))
