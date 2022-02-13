@@ -63,36 +63,43 @@ class Solution {
 
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
+        if (nums1 == null || nums2 == null) {
+            return null;
+        }
+        
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        
+        if (len1 == 0 || len2 == 0) {
             return new int[0];
         }
         
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         
-        int len1 = nums1.length;
-        int len2 = nums2.length;      
-        int i = 0, j = 0, k = 0;
+        int i = 0;
+        int j = 0;
+        int k = 0;
         
         while (i < len1 && j < len2) {
             if (nums1[i] < nums2[j]) {
-                ++i;
+                i++;
             }
             else if (nums1[i] > nums2[j]) {
-                ++j;
+                j++;
             }
             else {
-                nums1[k] = nums1[i];
-                ++i;
-                ++j;
-                ++k;
+                nums1[k] = nums2[j];
+                i++;
+                j++;
+                k++;
             }
         }
         
         return Arrays.copyOfRange(nums1, 0, k);
     }
 }
-
+// TC: O(nlgn + mlgm); SC: O(1)
 // Success
 // Details 
 // Runtime: 1 ms, faster than 100.00% of Java online submissions for Intersection of Two Arrays II.
