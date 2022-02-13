@@ -20,6 +20,7 @@
 // What if elements of nums2 are stored on disk, 
 // and the memory is limited such that you cannot load all elements into the memory at once?
 
+// Solution 1
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
@@ -47,7 +48,7 @@ class Solution {
             if (cnt > 0) {
                 nums1[k] = num;
                 map.put(num, cnt - 1);
-                ++k;
+                k++;
             }
         }
         
@@ -61,6 +62,7 @@ class Solution {
 // Runtime: 2 ms, faster than 95.76% of Java online submissions for Intersection of Two Arrays II.
 // Memory Usage: 39.7 MB, less than 18.65% of Java online submissions for Intersection of Two Arrays II.
 
+// Solution 2
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
         if (nums1 == null || nums2 == null) {
@@ -152,3 +154,7 @@ class Solution {
     }
 }
 // TC: O(n + m): SC: O(min(n, m))
+// Success
+// Details 
+// Runtime: 3 ms, faster than 71.89% of Java online submissions for Intersection of Two Arrays II.
+// Memory Usage: 44.6 MB, less than 5.37% of Java online submissions for Intersection of Two Arrays II.
