@@ -128,3 +128,7 @@ class Solution {
     } 
 }
 // TC: O
+// Success
+// Details 
+// Runtime: 311 ms, faster than 26.12% of Java online submissions for Word Ladder.
+// Memory Usage: 117.4 MB, less than 12.48% of Java online submissions for Word Ladder.
