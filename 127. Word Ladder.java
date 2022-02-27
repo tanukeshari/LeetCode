@@ -127,7 +127,7 @@ class Solution {
         return wordMap;
     } 
 }
-// TC: O
+// TC: O(n * m); SC: O(n * m)
 // Success
 // Details 
 // Runtime: 311 ms, faster than 26.12% of Java online submissions for Word Ladder.
