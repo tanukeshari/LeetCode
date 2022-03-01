@@ -66,7 +66,7 @@ class Solution {
         return true;
     }
 }
-// TC: O(n^(n+1)); SC: O(n)
+// TC: O(n!); SC: O(n)
 // Success
 // Details 
 // Runtime: 8 ms, faster than 29.77% of Java online submissions for N-Queens II.
