@@ -40,7 +40,6 @@ class Solution {
         int c2 = 0;
         int c3 = nums.length - 1;
         
-        
         while (c2 <= c3) {
             if (nums[c2] == 0) {
                 swap(nums, c2, c1);
