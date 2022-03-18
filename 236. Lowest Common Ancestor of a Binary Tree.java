@@ -68,7 +68,7 @@ class Solution {
         return leftChild == null ? rightChild : leftChild;
     }
 }
-//  TC: O(n): SC: O(height)
+// TC: O(n): SC: O(height)
 // Success
 // Details 
 // Runtime: 8 ms, faster than 72.24% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
