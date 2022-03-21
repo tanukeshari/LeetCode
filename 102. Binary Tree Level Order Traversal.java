@@ -83,3 +83,7 @@ class Solution {
     }
 }
 // TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 3 ms, faster than 8.50% of Java online submissions for Binary Tree Level Order Traversal.
+// Memory Usage: 44.4 MB, less than 6.35% of Java online submissions for Binary Tree Level Order Traversal.
