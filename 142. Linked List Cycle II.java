@@ -88,3 +88,47 @@ public class Solution {
 // Memory Usage: 47 MB, less than 5.71% of Java online submissions for Linked List Cycle II.
 
 // Solution 2
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null || head.next.next.next == null) {
+            return null;
+        }
+        
+        ListNode fast = head.next.next;
+        ListNode slow = head.next;
+        
+        while (fast != null && fast.next != null) {
+            if (fast == slow) {
+                break;
+            }
+            
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+        
+        ListNode start = head;
+        
+        while (start != slow) {
+            start = start.next;
+            slow = slow.next;
+        }
+        
+        return start;
+    }
+}
+// TC: O(n); SC: O(1)
