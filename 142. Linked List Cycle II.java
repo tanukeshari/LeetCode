@@ -132,3 +132,7 @@ public class Solution {
     }
 }
 // TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Linked List Cycle II.
+// Memory Usage: 45.3 MB, less than 36.19% of Java online submissions for Linked List Cycle II.
