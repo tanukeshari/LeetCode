@@ -101,20 +101,20 @@ public class Solution {
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        if (head == null || head.next == null || head.next.next == null || head.next.next.next == null) {
+        if (head == null || head.next == null) {
             return null;
         }
         
-        ListNode fast = head.next.next;
-        ListNode slow = head.next;
+        ListNode fast = head;
+        ListNode slow = head;
         
         while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            
             if (fast == slow) {
                 break;
             }
-            
-            fast = fast.next.next;
-            slow = slow.next;
         }
         
         if (fast == null || fast.next == null) {
