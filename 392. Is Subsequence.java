@@ -1,31 +1,36 @@
 // Easy
-
-// Given a string s and a string t, check if s is subsequence of t.
+// Given a string s and a string t, 
+// check if s is subsequence of t.
 // A subsequence of a string is a new string which is formed from the original string by deleting some 
 // (can be none) of the characters without disturbing the relative positions of the remaining characters. 
 // (ie, "ace" is a subsequence of "abcde" while "aec" is not).
 
 // Follow up:
 // If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, 
-// and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?
+// and you want to check one by one to see if T has its subsequence. 
+// In this scenario, how would you change your code?
 
 // Credits:
 // Special thanks to @pbrother for adding this problem and creating all test cases.
 
 // Example 1:
-// Input: s = "abc", t = "ahbgdc"
-// Output: true
+// Input: 
+// s = "abc", t = "ahbgdc"
+// Output: 
+// true
 
 // Example 2:
-// Input: s = "axc", t = "ahbgdc"
-// Output: false
+// Input: 
+// s = "axc", t = "ahbgdc"
+// Output: 
+// false
  
 // Constraints:
 // 0 <= s.length <= 100
 // 0 <= t.length <= 10^4
 // Both strings consists only of lowercase characters.
 
-// Solution #1
+// Solution 1
 class Solution {
     public boolean isSubsequence(String s, String t) {
         int ini = 0, s_len = s.length(), t_len = t.length();
@@ -44,13 +49,13 @@ class Solution {
         return true;
     }
 }
-
+//  TC: O(t.length); SC: O(1)
 // Success
 // Details 
 // Runtime: 0 ms, faster than 100.00% of Java online submissions for Is Subsequence.
 // Memory Usage: 36.5 MB, less than 99.48% of Java online submissions for Is Subsequence.
 
-// Solution #2
+// Solution 2
 class Solution {
     int s_len, t_len;
     String src, tgt;
@@ -90,7 +95,7 @@ class Solution {
 // Runtime: 1 ms, faster than 76.36% of Java online submissions for Is Subsequence.
 // Memory Usage: 38.5 MB, less than 15.54% of Java online submissions for Is Subsequence.
 
-// Solution #3
+// Solution 3
 class Solution {
     public boolean isSubsequence(String s, String t) {
         int s_len = s.length(), t_len = t.length();
@@ -114,7 +119,7 @@ class Solution {
 // Runtime: 0 ms, faster than 100.00% of Java online submissions for Is Subsequence.
 // Memory Usage: 37 MB, less than 44.50% of Java online submissions for Is Subsequence.
 
-// Solution #4
+// Solution 4
 class Solution {
     public boolean isSubsequence(String s, String t) {
         HashMap<Character, List<Integer>> t_hash = new HashMap<>();
@@ -162,3 +167,42 @@ class Solution {
 // Details 
 // Runtime: 7 ms, faster than 7.91% of Java online submissions for Is Subsequence.
 // Memory Usage: 38.6 MB, less than 12.98% of Java online submissions for Is Subsequence.
+
+// Solution 5
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        if (s == null || s.length() == 0) {
+            return true;
+        } 
+        
+        if (t == null || t.length() == 0) {
+            return false;
+        }
+        
+        int init = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            boolean find = false;
+            
+            for (int j = init; j < t.length(); j++) {
+                if (s.charAt(i) == t.charAt(j)) {
+                    init = j + 1;
+                    find = true;
+                    
+                    break;
+                }
+            }
+            
+            if (!find) {
+                return false;
+            }  
+        }
+        
+        return true;
+    }
+}
+//  TC: O(t.length); SC: O(1)
+// Success
+// Details 
+// Runtime: 1 ms, faster than 89.18% of Java online submissions for Is Subsequence.
+// Memory Usage: 40.2 MB, less than 89.65% of Java online submissions for Is Subsequence.
