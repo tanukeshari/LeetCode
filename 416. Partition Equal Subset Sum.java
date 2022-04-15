@@ -25,7 +25,7 @@
 // 1 <= nums.length <= 200
 // 1 <= nums[i] <= 100
   
-// Solution
+// Solution 1
 class Solution {
     public boolean canPartition(int[] nums) {
         if (nums == null || nums.length == 0) {
@@ -70,3 +70,45 @@ class Solution {
 // Details 
 // Runtime: 40 ms, faster than 66.78% of Java online submissions for Partition Equal Subset Sum.
 // Memory Usage: 42.3 MB, less than 91.20% of Java online submissions for Partition Equal Subset Sum.
+
+// Solution 2
+class Solution {
+    public boolean canPartition(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return false;
+        } 
+        
+        int len = nums.length;
+        int sum = 0;
+        
+        for (int num : nums) {
+            sum += num;
+        }
+        
+        if (sum % 2 != 0) {
+            return false;
+        }
+        
+        int halfSum = sum / 2;
+        boolean[] dp = new boolean[halfSum + 1];
+        dp[0] = true;
+        
+        for (int num : nums) {
+            for (int s = halfSum; s >= 0; s--) {
+                if (s < num) {
+                    continue;
+                }
+                else {
+                    dp[s] = dp[s] || dp[s - num];
+                }
+            }
+        }
+        
+        return dp[halfSum];
+    }
+}
+// TC: O(halfSum * n); SC: O(halfSum)
+// Success
+// Details 
+// Runtime: 23 ms, faster than 89.44% of Java online submissions for Partition Equal Subset Sum.
+// Memory Usage: 40.8 MB, less than 96.85% of Java online submissions for Partition Equal Subset Sum.
