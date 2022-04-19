@@ -15,7 +15,7 @@
 # try coding another solution using the divide and conquer approach, 
 # which is more subtle.
 
-# Solution 1
+# Solution
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         res = float('-inf')
