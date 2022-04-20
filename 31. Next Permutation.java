@@ -44,7 +44,7 @@
 // 0 <= nums[i] <= 100
   
 // Solution
-  class Solution {
+class Solution {
     public void nextPermutation(int[] nums) {
         if (nums == null || nums.length == 0) {
             return;
