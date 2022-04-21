@@ -174,19 +174,19 @@ class Solution {
         
         ans = diQ.pollLast();
             
-            while (!diQ.isEmpty()) {
-                int curNum = diQ.pollLast();
-                char operator = opQ.poll();
-                
-                if (operator == '+') {
-                    ans += curNum;
-                }
-                else {
-                    ans -= curNum;
-                }
+        while (!diQ.isEmpty()) {
+            int curNum = diQ.pollLast();
+            char operator = opQ.poll();
+
+            if (operator == '+') {
+                ans += curNum;
             }
-            
-            return ans;
+            else {
+                ans -= curNum;
+            }
+        }
+
+        return ans;
     }
     
     private int extractWholeNumber(String s, int idx, int[] rslt) {
