@@ -1,26 +1,41 @@
 // Medium
+// Given a string s which represents an expression, 
+// evaluate this expression and return its value. 
 
-// Implement a basic calculator to evaluate a simple expression string.
-// The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . 
 // The integer division should truncate toward zero.
+// You may assume that the given expression is always valid. 
+// All intermediate results will be in the range of [-231, 231 - 1].
+
+// Note: 
+// You are not allowed to use any built-in function which evaluates strings as mathematical expressions, 
+// such as eval().
 
 // Example 1:
-// Input: "3+2*2"
-// Output: 7
-
+// Input: 
+// s = "3+2*2"
+// Output: 
+// 7
+    
 // Example 2:
-// Input: " 3/2 "
-// Output: 1
-
+// Input: 
+// s = " 3/2 "
+// Output: 
+// 1
+    
 // Example 3:
-// Input: " 3+5 / 2 "
-// Output: 5
-
-// Note:
-// You may assume that the given expression is always valid.
-// Do not use the eval built-in library function.
-
-// Solution #1
+// Input: 
+// s = " 3+5 / 2 "
+// Output: 
+// 5
+ 
+// Constraints:
+// 1 <= s.length <= 3 * 105
+// s consists of integers and operators ('+', '-', '*', '/') separated by some number of spaces.
+// s represents a valid expression.
+// All the integers in the expression are non-negative integers in the range [0, 231 - 1].
+// The answer is guaranteed to fit in a 32-bit integer.
+    
+// Solution 1
 class Solution {
     public int calculate(String s) {
         Stack<Integer> stack = new Stack<Integer>();
@@ -66,7 +81,7 @@ class Solution {
 // Runtime: 20 ms, faster than 15.33% of Java online submissions for Basic Calculator II.
 // Memory Usage: 42.1 MB, less than 15.14% of Java online submissions for Basic Calculator II.
 
-// Solution #2
+// Solution 2
 class Solution {
     public int calculate(String s) {
         if (s == null || s.isEmpty()) {
@@ -108,3 +123,95 @@ class Solution {
 // Details 
 // Runtime: 6 ms, faster than 92.92% of Java online submissions for Basic Calculator II.
 // Memory Usage: 38.8 MB, less than 96.14% of Java online submissions for Basic Calculator II.
+
+// Solution 3
+class Solution {
+    public int calculate(String s) {
+        Deque<Integer> diQ = new ArrayDeque<>();
+        Queue<Character> opQ = new ArrayDeque<>();
+        int ans = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char cur = s.charAt(i);
+            
+            if (cur == ' ') {
+                continue;
+            }
+            else if (Character.isDigit(cur)) {
+                int[] rslt = new int[] {cur - '0'};
+                int idx = extractWholeNumber(s, i + 1, rslt);
+              
+                diQ.offerFirst(rslt[0]);
+                i = idx - 1;
+            }
+            else {
+                if (cur == '*') {
+                    int temp = diQ.pollFirst();
+                    int[] rslt = new int[] {0};
+                    int idx = extractWholeNumber(s, i + 1, rslt);
+                    
+                    temp *= rslt[0];
+                    diQ.offerFirst(temp);
+                    i = idx - 1;
+                }
+                else if (cur == '/') {
+                    int temp = diQ.pollFirst();
+                    int[] rslt = new int[] {0};
+                    int idx = extractWholeNumber(s, i + 1, rslt);
+                    
+                    temp /= rslt[0];
+                    diQ.offerFirst(temp);
+                    i = idx - 1;
+                }
+                else if (cur == '+') {
+                    opQ.offer(cur);
+                }
+                else {
+                    opQ.offer(cur);
+                }
+            }
+        }
+        
+        ans = diQ.pollLast();
+            
+            while (!diQ.isEmpty()) {
+                int curNum = diQ.pollLast();
+                char operator = opQ.poll();
+                
+                if (operator == '+') {
+                    ans += curNum;
+                }
+                else {
+                    ans -= curNum;
+                }
+            }
+            
+            return ans;
+    }
+    
+    private int extractWholeNumber(String s, int idx, int[] rslt) {
+        while (idx < s.length()) {
+            char cur = s.charAt(idx);
+            
+            if (cur == ' ') {
+                idx++;
+                
+                continue;
+            }
+            
+            if (!Character.isDigit(cur)) {
+                break;
+            }
+            
+            rslt[0] = rslt[0] * 10 + cur - '0';
+            idx++;
+        }
+        
+        return idx;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 28 ms, faster than 28.87% of Java online submissions for Basic Calculator II.
+// Memory Usage: 48.5 MB, less than 14.55% of Java online submissions for Basic Calculator II.
