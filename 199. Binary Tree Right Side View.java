@@ -79,7 +79,7 @@ class Solution {
         return ans;
     }
 }
-// TC: O(n); SC: O(n)
+// TC: O(n); SC: O(d)
 // Success
 // Details 
 // Runtime: 1 ms, faster than 91.99% of Java online submissions for Binary Tree Right Side View.
