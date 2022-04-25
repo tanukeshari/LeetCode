@@ -43,7 +43,7 @@ class Solution {
         }
     }
 }
-// 
+// TC: O(n^2); SC: O(1)
 // Success
 // Details 
 // Runtime: 33 ms, faster than 41.84% of Java online submissions for 3Sum.
