@@ -14,7 +14,7 @@
 //   [-1, -1, 2]
 // ]
 
-// Solution
+// Solution 1
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
@@ -48,3 +48,55 @@ class Solution {
 // Details 
 // Runtime: 33 ms, faster than 41.84% of Java online submissions for 3Sum.
 // Memory Usage: 55.9 MB, less than 16.22% of Java online submissions for 3Sum.
+
+// Solution 2
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        if (nums == null || nums.length < 3) {
+            return ans;
+        }
+        
+        Arrays.sort(nums);
+        
+        int len = nums.length;
+        
+        for (int i = 0; i < len - 2; i++) {
+            int cur = nums[i];
+            
+            if (i > 0 && cur == nums[i - 1]) {
+                continue;
+            }
+            
+            int left = i + 1;
+            int right = len - 1;
+            
+            while (left < right) {
+                int tempSum = nums[i] + nums[left] + nums[right];
+                
+                if (tempSum == 0) {
+                    ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    left++;
+                    
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    } 
+                }
+                else if (tempSum < 0) {
+                    left++;
+                }
+                else {
+                    right--;
+                }
+            }
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n^2); SC: O(1)
+// Success
+// Details 
+// Runtime: 33 ms, faster than 51.17% of Java online submissions for 3Sum.
+// Memory Usage: 58.1 MB, less than 69.92% of Java online submissions for 3Sum.
