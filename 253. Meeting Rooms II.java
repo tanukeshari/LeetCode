@@ -1,18 +1,24 @@
 // Medium
-
 // Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
 // find the minimum number of conference rooms required.
 
 // Example 1:
-// Input: [[0, 30],[5, 10],[15, 20]]
-// Output: 2
+// Input: 
+// [[0, 30],[5, 10],[15, 20]]
+// Output: 
+// 2
 
 // Example 2:
-// Input: [[7,10],[2,4]]
-// Output: 1
+// Input: 
+// [[7,10],[2,4]]
+// Output: 
+// 1
 
-// NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+// NOTE: 
+// input types have been changed on April 15, 2019. 
+// Please reset to default code definition to get new method signature.
 
+// Solution1
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
         if (intervals.length == 0) {
@@ -37,13 +43,13 @@ class Solution {
         return min_heap.size();
     }
 }
-
+// TC: O(nlgn); SC: O(n)
 // Success
 // Details 
 // Runtime: 8 ms, faster than 18.46% of Java online submissions for Meeting Rooms II.
 // Memory Usage: 38.7 MB, less than 84.21% of Java online submissions for Meeting Rooms II.
 
-// Solution #2
+// Solution 2
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
         if (intervals.length == 0) {
@@ -73,7 +79,7 @@ class Solution {
         return room;
     }
 }
-
+// TC: O(nlgn); SC: O(n)
 // Success
 // Details 
 // Runtime: 3 ms, faster than 82.18% of Java online submissions for Meeting Rooms II.
