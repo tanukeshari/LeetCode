@@ -112,7 +112,8 @@ class Solution {
         return null;
     }
 }
-// TC: O(n); SC: O(n)Success
+// TC: O(n); SC: O(n)
+// Success
 // Details 
 // Runtime: 1 ms, faster than 99.80% of Java online submissions for Two Sum.
 // Memory Usage: 42 MB, less than 64.89% of Java online submissions for Two Sum.
