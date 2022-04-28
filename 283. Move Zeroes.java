@@ -22,7 +22,7 @@
  
 // Follow up: Could you minimize the total number of operations done?
   
-// Solution
+// Solution 1
 class Solution {
     public void moveZeroes(int[] nums) {
         if (nums == null || nums.length == 0) {
@@ -52,3 +52,34 @@ class Solution {
 // Details 
 // Runtime: 53 ms, faster than 8.85% of Java online submissions for Move Zeroes.
 // Memory Usage: 43.9 MB, less than 80.79% of Java online submissions for Move Zeroes.
+
+// Solution 2
+class Solution {
+    public void moveZeroes(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        
+        int len = nums.length;
+        int cur = 0;
+        
+        for (int i = 0; i < len; i++) {
+            if (nums[i] == 0) {
+                cur = Math.min(cur, i);
+            }
+            else {
+                nums[cur] = nums[i];
+                cur++;
+            }
+        }
+        
+        for (int j = cur; j < len; j++) {
+            nums[j] = 0;
+        }
+    }
+}
+// TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 1 ms, faster than 100.00% of Java online submissions for Move Zeroes.
+// Memory Usage: 55.3 MB, less than 10.29% of Java online submissions for Move Zeroes.
