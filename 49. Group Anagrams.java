@@ -19,34 +19,42 @@
 // Solution 1
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        if (strs.length == 0) {
-            return new ArrayList();
+        if (strs == null) {
+            return null;
         }
         
-        Map<String, List> ans = new HashMap<String, List>();
-        int[] count = new int[26];
+        if (strs.length == 0) {
+            return new ArrayList<>();
+        }
+        
+        Map<String, List<String>> hm = new HashMap<>();
         
         for (String s : strs) {
-            Arrays.fill(count, 0);
-            for (char c : s.toCharArray()) {
-                count[c - 'a']++;
+            int[] cnt = new int[26];
+            
+            for (char ch : s.toCharArray()) {
+                cnt[ch - 'a']++;
             }
             
-            StringBuilder sb = new StringBuilder("");
+            StringBuilder coding = new StringBuilder();
             
             for (int i = 0; i < 26; i++) {
-                sb.append('#');
-                sb.append(count[i]);
+                coding.append('#');
+                coding.append(cnt[i]);
             }
-           
-            String key = sb.toString();
             
-            if (!ans.containsKey(key)) {
-                ans.put(key, new ArrayList());
+            String key = coding.toString();
+            List<String> val = hm.get(key);
+            
+            if (val == null) {
+                val = new ArrayList<>();
             }
-            ans.get(key).add(s);    
+            
+            val.add(s);
+            hm.put(key, val);
         }
-        return new ArrayList(ans.values());
+        
+        return new ArrayList(hm.values());
     }
 }
 // TC: O(nk); SC: O(nk)
