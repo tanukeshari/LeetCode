@@ -44,7 +44,7 @@
 // 0 <= clickc < n
 // board[clickr][clickc] is either 'M' or 'E'.
   
-// Solution
+// Solution bfs
 class Solution {
     public char[][] updateBoard(char[][] board, int[] click) {
         if (board == null || click == null) {
