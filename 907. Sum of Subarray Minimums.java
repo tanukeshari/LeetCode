@@ -22,4 +22,51 @@
 // 1 <= arr.length <= 3 * 104
 // 1 <= arr[i] <= 3 * 104
   
-// Solution
+// Solution 1
+class Solution {
+    public int sumSubarrayMins(int[] arr) {
+        int[] leftLess = new int[arr.length];
+        Arrays.fill(leftLess, -1);
+        int[] rightLess = new int[arr.length];
+        Arrays.fill(rightLess, arr.length);
+        
+        Deque<Integer> leftStack = new ArrayDeque<>();
+        leftStack.offerFirst(arr.length - 1);
+        Deque<Integer> rightStack = new ArrayDeque<>();
+        rightStack.offerFirst(0);
+        
+        long ans = 0;
+        int m = (int) 1e9 + 7;
+        
+        for (int i = 1; i < arr.length; i++) {
+            while (!rightStack.isEmpty() && arr[i] < arr[rightStack.peekFirst()]) {
+                rightLess[rightStack.peekFirst()] = i;
+                rightStack.pollFirst();
+            }
+            
+            rightStack.offerFirst(i);
+        }
+        
+        for (int j = arr.length - 2; j >= 0; j--) {
+            while (!leftStack.isEmpty() && arr[j] <= arr[leftStack.peekFirst()]) {
+                leftLess[leftStack.peekFirst()] = j;
+                leftStack.pollFirst();
+            }
+            
+            leftStack.offerFirst(j);
+        }
+        
+        for (int k = 0; k < arr.length; k++) {
+            long temp = 1L * (arr[k] * (k - leftLess[k])) % m * (rightLess[k] - k) % m;
+            ans += temp;
+            ans %= m;            
+        }
+        
+        return (int) ans % m;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 44 ms, faster than 76.67% of Java online submissions for Sum of Subarray Minimums.
+// Memory Usage: 72.6 MB, less than 17.17% of Java online submissions for Sum of Subarray Minimums.
