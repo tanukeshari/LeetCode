@@ -57,7 +57,7 @@ class Solution {
         }
         
         for (int k = 0; k < arr.length; k++) {
-            long temp = 1L * (arr[k] * (k - leftLess[k])) % m * (rightLess[k] - k) % m;
+            long temp = 1L * arr[k] * (k - leftLess[k]) % m * (rightLess[k] - k) % m;
             ans += temp;
             ans %= m;            
         }
