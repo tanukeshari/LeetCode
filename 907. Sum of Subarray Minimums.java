@@ -68,5 +68,5 @@ class Solution {
 // TC: O(n); SC: O(n)
 // Success
 // Details 
-// Runtime: 44 ms, faster than 76.67% of Java online submissions for Sum of Subarray Minimums.
-// Memory Usage: 72.6 MB, less than 17.17% of Java online submissions for Sum of Subarray Minimums.
+// Runtime: 33 ms, faster than 85.11% of Java online submissions for Sum of Subarray Minimums.
+// Memory Usage: 50.3 MB, less than 81.39% of Java online submissions for Sum of Subarray Minimums.
