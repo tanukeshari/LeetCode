@@ -22,7 +22,7 @@
 // 1 <= arr.length <= 3 * 104
 // 1 <= arr[i] <= 3 * 104
   
-// Solution 1
+// Solution
 class Solution {
     public int sumSubarrayMins(int[] arr) {
         int[] leftLess = new int[arr.length];
