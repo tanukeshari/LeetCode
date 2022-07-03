@@ -70,3 +70,80 @@ class Solution {
 // Details 
 // Runtime: 23 ms, faster than 76.52% of Java online submissions for Sum of Subarray Ranges.
 // Memory Usage: 44.6 MB, less than 79.36% of Java online submissions for Sum of Subarray Ranges.
+
+// Solution 2
+class Solution {
+    public long subArrayRanges(int[] nums) {
+        int len = nums.length;
+        int[] leftLess = new int[len];
+        Arrays.fill(leftLess, -1);
+        int[] rightLess = new int[len];
+        Arrays.fill(rightLess, len);
+        int[] leftMore = new int[len];
+        Arrays.fill(leftMore, -1);
+        int[] rightMore = new int[len];
+        Arrays.fill(rightMore, len);
+        
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.offerFirst(0);
+        
+        long ans = 0;
+        
+        for (int i = 1; i < len; i++) {
+            while (!stack.isEmpty() && nums[i] <= nums[stack.peekFirst()]) {
+                rightLess[stack.peekFirst()] = i;
+                stack.pollFirst();
+            }
+            
+            stack.offerFirst(i);
+        }
+        
+        stack = new ArrayDeque<>();
+        stack.offerFirst(len - 1);
+        
+        for (int j = len - 2; j >= 0; j--) {
+            while (!stack.isEmpty() && nums[j] < nums[stack.peekFirst()]) {
+                leftLess[stack.peekFirst()] = j;
+                stack.pollFirst();
+            }
+            
+            stack.offerFirst(j);
+        }
+        
+        stack = new ArrayDeque<>();
+        stack.offerFirst(0);
+        
+        for (int k = 1; k < len; k++) {
+            while (!stack.isEmpty() && nums[k] >= nums[stack.peekFirst()]) {
+                rightMore[stack.peekFirst()] = k;
+                stack.pollFirst();
+            }
+            
+            stack.offerFirst(k);
+        }
+        
+        stack = new ArrayDeque<>();
+        stack.offerFirst(len - 1);
+        
+        for (int l = len - 2; l >= 0; l--) {
+            while (!stack.isEmpty() && nums[l] > nums[stack.peekFirst()]) {
+                leftMore[stack.peekFirst()] = l;
+                stack.pollFirst();
+            }
+            
+            stack.offerFirst(l);
+        }
+        
+        for (int m = 0; m < len; m++) {
+            ans += 1L * nums[m] * (m - leftMore[m]) * (rightMore[m] - m);
+            ans -= 1L * nums[m] * (m - leftLess[m]) * (rightLess[m] - m);
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 15 ms, faster than 93.11% of Java online submissions for Sum of Subarray Ranges.
+// Memory Usage: 47.6 MB, less than 15.48% of Java online submissions for Sum of Subarray Ranges.
