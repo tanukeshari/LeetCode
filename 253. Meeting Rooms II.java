@@ -52,31 +52,31 @@ class Solution {
 // Solution 2
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
-        if (intervals.length == 0) {
-            return 0;
-        }
-        
-        int room = 1, e_ptr = 0;
         int len = intervals.length;
-        int[] s_time = new int[len], e_time = new int[len];
+        int[] startT = new int[len];
+        int[] endT = new int[len];
         
         for (int i = 0; i < len; i++) {
-            s_time[i] = intervals[i][0];
-            e_time[i] = intervals[i][1];
-        }        
+            startT[i] = intervals[i][0];
+            endT[i] = intervals[i][1];
+        }
         
-        Arrays.sort(s_time);
-        Arrays.sort(e_time);
+        Arrays.sort(startT);
+        Arrays.sort(endT);
         
-        for (int s_ptr = 1; s_ptr < len; s_ptr++) {
-            if (s_time[s_ptr] >= e_time[e_ptr]) {
-                e_ptr++;
+        int rooms = 1;
+        int eIdx = 0;
+        
+        for (int sIdx = 1; sIdx < len; sIdx++) {
+            if (startT[sIdx] < endT[eIdx]) {
+                rooms++;
             }
             else {
-                room++;
+                eIdx++;
             }
         }
-        return room;
+        
+        return rooms;
     }
 }
 // TC: O(nlgn); SC: O(n)
