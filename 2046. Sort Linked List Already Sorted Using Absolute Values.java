@@ -123,3 +123,7 @@ class Solution {
     }
 }
 // TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 4 ms, faster than 67.18% of Java online submissions for Sort Linked List Already Sorted Using Absolute Values.
+// Memory Usage: 106.7 MB, less than 64.88% of Java online submissions for Sort Linked List Already Sorted Using Absolute Values.
