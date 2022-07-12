@@ -70,8 +70,7 @@ public class Solution extends VersionControl {
         if (n == 1) {
             return n;
         }
-        
-        
+             
         int left = 0;
         int right = n;
         
