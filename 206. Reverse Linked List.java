@@ -60,7 +60,7 @@ class Solution {
 // Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Linked List.
 // Memory Usage: 43.2 MB, less than 26.73% of Java online submissions for Reverse Linked List.
 
-// Solution 2
+// Solution 2, recursive
 /**
  * Definition for singly-linked list.
  * public class ListNode {
