@@ -37,8 +37,7 @@ public:
         thead->next = NULL;
         
         return head;
-        }
-        
+        }   
     }
 };
 // Success
