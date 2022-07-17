@@ -55,3 +55,37 @@ class Solution {
     }
 }
 // TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Linked List.
+// Memory Usage: 43.2 MB, less than 26.73% of Java online submissions for Reverse Linked List.
+
+// Solution 2
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        
+        return newHead;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Linked List.
+// Memory Usage: 44 MB, less than 7.88% of Java online submissions for Reverse Linked List.
