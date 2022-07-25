@@ -83,7 +83,7 @@ class Solution {
         return ans;
     }
 }
-// TC: O(n); SC: O(n)
+// TC: O(nlgn); SC: O(n)
 // Success
 // Details 
 // Runtime: 6 ms, faster than 73.54% of Java online submissions for High Five.
