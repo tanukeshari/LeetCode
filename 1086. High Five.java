@@ -75,8 +75,7 @@ class Solution {
             }
             
             int avg = sum / 5;
-            
-            
+                
             ans[idx] = new int[] {id2, avg};
             idx++;
         }
