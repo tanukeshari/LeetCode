@@ -82,3 +82,38 @@ class Solution {
 }
 // TC: O(n^3); SC: O(3)
 // TLE
+
+// Solution 2, brute force
+class Solution {
+    public int numTeams(int[] rating) {
+        int ans = 0;
+        int len = rating.length;
+        
+        for (int i = 0; i < len - 2; i++) {
+            for (int j = i + 1; j < len - 1; j++) {
+                for (int k = j + 1; k < len; k++) {
+                    if (rating[i] > rating[j]) {
+                        if (rating[j] > rating[k]) {
+                            ans++;
+                        }
+                        else {
+                            continue;
+                        }
+                    }
+                    else {
+                        if (rating[j] < rating[k]) {
+                            ans++;
+                        }
+                        else {
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n^3); SC: O(1)
+// TLE
