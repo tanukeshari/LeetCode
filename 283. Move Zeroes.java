@@ -83,3 +83,33 @@ class Solution {
 // Details 
 // Runtime: 1 ms, faster than 100.00% of Java online submissions for Move Zeroes.
 // Memory Usage: 55.3 MB, less than 10.29% of Java online submissions for Move Zeroes.
+
+// Solution 3
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        int len = nums.length;
+        
+        while (fast < len) {
+            if (nums[fast] != 0) {
+                nums[slow] = nums[fast];
+                fast++;
+                slow++;
+            }
+            else {
+                fast++;
+            }
+        }
+        
+        while (slow < len) {
+            nums[slow] = 0;
+            slow++;
+        }
+    }
+}
+// TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 2 ms, faster than 80.93% of Java online submissions for Move Zeroes.
+// Memory Usage: 55.1 MB, less than 26.87% of Java online submissions for Move Zeroes.
