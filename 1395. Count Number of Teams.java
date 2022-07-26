@@ -117,3 +117,49 @@ class Solution {
 }
 // TC: O(n^3); SC: O(1)
 // TLE
+
+// Solution 3, dp
+class Solution {
+    public int numTeams(int[] rating) {
+        int ans = 0;
+        int len = rating.length;
+        
+        int[] less = new int[len];
+        int[] larger = new int[len];
+        
+        for (int i = 0; i < len - 1; i++) {
+            int lessN = 0;
+            int largerN = 0;
+            
+            for (int j = i + 1; j < len; j++) {
+                if (rating[j] > rating[i]) {
+                    largerN++;
+                }
+                else {
+                    lessN++;
+                }
+            }
+            
+            less[i] = lessN;
+            larger[i] = largerN;
+        }
+        
+        for (int k = 0; k < len - 1; k++) {
+            for (int l = k + 1; l < len; l++) {
+                if (rating[l] > rating[k]) {
+                    ans += larger[l];
+                }
+                else {
+                    ans += less[l];
+                }
+            }
+        }
+        
+        return ans;
+    }
+}
+// TC; O(n^2); SC: O(n)
+// Success
+// Details 
+// Runtime: 28 ms, faster than 77.54% of Java online submissions for Count Number of Teams.
+// Memory Usage: 43.7 MB, less than 28.94% of Java online submissions for Count Number of Teams.
