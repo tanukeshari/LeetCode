@@ -1,6 +1,6 @@
 // Easy
-
-// Given two arrays, write a function to compute their intersection.
+// Given two arrays, 
+// write a function to compute their intersection.
 
 // Example 1:
 // Input: nums1 = [1,2,2,1], nums2 = [2,2]
@@ -56,7 +56,6 @@ class Solution {
         
     }
 }
-
 // Success
 // Details 
 // Runtime: 2 ms, faster than 95.76% of Java online submissions for Intersection of Two Arrays II.
@@ -158,3 +157,47 @@ class Solution {
 // Details 
 // Runtime: 3 ms, faster than 71.89% of Java online submissions for Intersection of Two Arrays II.
 // Memory Usage: 44.6 MB, less than 5.37% of Java online submissions for Intersection of Two Arrays II.
+
+// Solution 4
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> hm1 = new HashMap<>();
+        Map<Integer, Integer> hm2 = new HashMap<>();
+        
+        for (int n1 : nums1) {
+            hm1.put(n1, hm1.getOrDefault(n1, 0) + 1);
+        }
+        
+        for (int n2 : nums2) {
+            hm2.put(n2, hm2.getOrDefault(n2, 0) + 1);
+        }
+        
+        List<Integer> list = new ArrayList<>();
+        
+        for (int n : hm1.keySet()) {
+            if (hm2.containsKey(n)) {
+                int cnt = Math.min(hm1.get(n), hm2.get(n));
+                
+                while (cnt > 0) {
+                    list.add(n);
+                    cnt--;
+                }
+            }
+        }
+        
+        int[] ans = new int[list.size()];
+        int i = 0;
+        
+        for (int num : list) {
+            ans[i] = num;
+            i++;
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 5 ms, faster than 48.20% of Java online submissions for Intersection of Two Arrays II.
+// Memory Usage: 44.8 MB, less than 7.17% of Java online submissions for Intersection of Two Arrays II.
