@@ -41,8 +41,6 @@ class Solution {
                 }
             
             for (int j = len2 - 1; j >= 0; j--) {
-                
-                
                 int d2 = num2.charAt(j) - '0';
                 int tepRst = d1 * d2 + carry;
                 sb.append(tepRst % 10);
