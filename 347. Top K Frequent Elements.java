@@ -1,6 +1,6 @@
 // Medium
-
-// Given a non-empty array of integers, return the k most frequent elements.
+// Given a non-empty array of integers, 
+// return the k most frequent elements.
 
 // Example 1:
 // Input: nums = [1,1,1,2,2,3], k = 2
@@ -11,12 +11,15 @@
 // Output: [1]
 
 // Note:
-// You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
-// Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
-// It's guaranteed that the answer is unique, in other words the set of the top k frequent elements is unique.
+// You may assume k is always valid, 
+// 1 ≤ k ≤ number of unique elements.
+// Your algorithm's time complexity must be better than O(n log n), 
+// where n is the array's size.
+// It's guaranteed that the answer is unique, 
+// in other words the set of the top k frequent elements is unique.
 // You can return the answer in any order.
 
-// Solution #1
+// Solution 1
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         int len = nums.length;
@@ -53,8 +56,43 @@ class Solution {
         return ans;
     }
 }
-
 // Success
 // Details 
 // Runtime: 11 ms, faster than 39.68% of Java online submissions for Top K Frequent Elements.
 // Memory Usage: 41.5 MB, less than 64.46% of Java online submissions for Top K Frequent Elements.
+
+// Solution 2
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> frq = new HashMap<>();
+        
+        for (int n : nums) {
+            frq.put(n, frq.getOrDefault(n, 0) + 1);
+        }
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> frq.get(a) - frq.get(b));
+        
+        for (int key : frq.keySet()) {
+            pq.offer(key);
+            
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
+        
+        int[] ans = new int[k];
+        int i = 0;
+        
+        while (!pq.isEmpty()) {
+            ans[i] = pq.poll();
+            i++;
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n * lgk); SC: O(n)
+// Success
+// Details 
+// Runtime: 28 ms, faster than 18.36% of Java online submissions for Top K Frequent Elements.
+// Memory Usage: 49.3 MB, less than 83.15% of Java online submissions for Top K Frequent Elements.
