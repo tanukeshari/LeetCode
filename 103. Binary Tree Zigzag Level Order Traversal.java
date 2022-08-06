@@ -185,5 +185,5 @@ class Solution {
 // TC: O(n); SC: O(n)
 // Success
 // Details 
-// Runtime: 2 ms, faster than 38.81% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
-// Memory Usage: 42.2 MB, less than 82.25% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
+// Runtime: 1 ms, faster than 96.41% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
+// Memory Usage: 41 MB, less than 93.64% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
