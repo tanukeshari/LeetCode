@@ -25,7 +25,7 @@
 // The number of nodes in the tree is in the range [0, 2000].
 // -1000 <= Node.val <= 1000
   
-// Solution
+// Solution 1
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -87,3 +87,60 @@ class Solution {
 // Details 
 // Runtime: 3 ms, faster than 8.50% of Java online submissions for Binary Tree Level Order Traversal.
 // Memory Usage: 44.4 MB, less than 6.35% of Java online submissions for Binary Tree Level Order Traversal.
+
+// Solution 2
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        if (root == null) {
+            return ans;
+        }
+        
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
+        
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            List<Integer> level = new ArrayList<>();
+            
+            while (len > 0) {   
+                TreeNode cur = queue.poll();
+                len--;
+                level.add(cur.val);
+
+                if (cur.left != null) {
+                    queue.offer(cur.left);
+                }
+
+                if (cur.right != null) {
+                    queue.offer(cur.right);
+                }
+            }
+            
+            ans.add(level);
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 1 ms, faster than 93.16% of Java online submissions for Binary Tree Level Order Traversal.
+// Memory Usage: 43.7 MB, less than 47.84% of Java online submissions for Binary Tree Level Order Traversal.
