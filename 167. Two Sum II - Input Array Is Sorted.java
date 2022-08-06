@@ -68,3 +68,8 @@ class Solution {
         return ans;
     }
 }
+// TC: O(n); SC: O(1)
+// Success
+// Details 
+// Runtime: 20 ms, faster than 30.66% of Java online submissions for Multiply Strings.
+// Memory Usage: 43.2 MB, less than 48.45% of Java online submissions for Multiply Strings.
