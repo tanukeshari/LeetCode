@@ -92,3 +92,38 @@ class Solution {
 // Details 
 // Runtime: 2 ms, faster than 57.61% of Java online submissions for Trapping Rain Water.
 // Memory Usage: 49.8 MB, less than 9.62% of Java online submissions for Trapping Rain Water.
+
+// Solution 3
+class Solution {
+    public int trap(int[] height) {
+        int len = height.length;
+        int[] left = new int[len];
+        int[] right = new int[len];
+        int leftMax = height[0];
+        int rightMax = height[len - 1];
+        
+        for (int i = 1; i < len; i++) {
+            left[i] = leftMax;
+            right[len - 1 - i] = rightMax;
+            leftMax = Math.max(leftMax, height[i]);
+            rightMax = Math.max(rightMax, height[len - 1 - i]);
+        }
+        
+        int ans = 0;
+        
+        for (int j = 0; j < len; j++) {
+            int h = Math.min(left[j], right[j]);
+            
+            if (height[j] < h) {
+                ans += h - height[j];
+            }
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 2 ms, faster than 59.38% of Java online submissions for Trapping Rain Water.
+// Memory Usage: 49.3 MB, less than 24.56% of Java online submissions for Trapping Rain Water.
