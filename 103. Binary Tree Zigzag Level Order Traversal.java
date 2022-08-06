@@ -27,7 +27,7 @@
 // The number of nodes in the tree is in the range [0, 2000].
 // -100 <= Node.val <= 100
   
-// Solution
+// Solution 1
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -110,3 +110,80 @@ class Solution {
 // Details 
 // Runtime: 1 ms, faster than 86.75% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
 // Memory Usage: 43.5 MB, less than 7.00% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
+
+// Solution 2
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        if (root == null) {
+            return ans;
+        }
+        
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        deque.offerFirst(root);
+        
+        boolean isEven = true;
+        
+        while (!deque.isEmpty()) {
+            int len = deque.size();
+            List<Integer> level = new ArrayList<>();
+            
+            while (len > 0) {
+                TreeNode cur;
+                
+                if (isEven) {
+                    cur = deque.pollFirst();
+                    
+                    if (cur.left != null) {
+                        deque.offerLast(cur.left);
+                    }
+                    
+                    if (cur.right != null) {
+                        deque.offerLast(cur.right);
+                    }
+                }
+                else {
+                    cur = deque.pollLast();
+                    
+                    if (cur.right != null) {
+                        deque.offerFirst(cur.right);
+                    }
+                    
+                    if (cur.left != null) {
+                        deque.offerFirst(cur.left);
+                    }
+                }
+                
+                len--;
+                level.add(cur.val);
+                    
+            }
+            
+            isEven = !isEven;
+            ans.add(level);
+        }
+        
+        return ans;
+    }
+}
+// TC: O(n); SC: O(n)
+// Success
+// Details 
+// Runtime: 2 ms, faster than 38.81% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
+// Memory Usage: 42.2 MB, less than 82.25% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
