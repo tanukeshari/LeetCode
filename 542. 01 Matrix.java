@@ -19,7 +19,7 @@
 // mat[i][j] is either 0 or 1.
 // There is at least one 0 in mat.
   
-// Solution
+// Solution 1
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
         if (mat == null) {
@@ -78,3 +78,60 @@ class Solution {
 // Details 
 // Runtime: 25 ms, faster than 41.93% of Java online submissions for 01 Matrix.
 // Memory Usage: 73.4 MB, less than 52.80% of Java online submissions for 01 Matrix.
+
+// Solution 2
+class Solution {
+    public int[][] updateMatrix(int[][] mat) {
+        int ROWS = mat.length;
+        int COLS = mat[0].length;
+        int[][] dist = new int[ROWS][COLS];
+        
+        Queue<Integer> queue = new ArrayDeque<>();
+        boolean[][] visited = new boolean[ROWS][COLS];
+        
+        int level = 1;
+        
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if (mat[i][j] == 0) {
+                    queue.offer(i * COLS + j);
+                    visited[i][j] = true;
+                }
+            }
+        }
+        
+        int[][] DIRS = new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            
+            while (len > 0) {
+                int cur = queue.poll();
+                int row = cur / COLS;
+                int col = cur % COLS;
+                
+                len--;
+
+                for (int[] dir : DIRS) {
+                    int nextRow = row + dir[0];
+                    int nextCol = col + dir[1];
+
+                    if (0 <= nextRow && nextRow < ROWS && 0 <= nextCol && nextCol < COLS && !visited[nextRow][nextCol]) {
+                        dist[nextRow][nextCol] = level;
+                        queue.offer(nextRow * COLS + nextCol);
+                        visited[nextRow][nextCol] = true;
+                    }
+                }
+            }
+            
+            level++;
+        }
+        
+        return dist;
+    }
+}
+// TC: O(r * c); SC: O(r * c)
+// Success
+// Details 
+// Runtime: 27 ms, faster than 35.30% of Java online submissions for 01 Matrix.
+// Memory Usage: 68.5 MB, less than 80.32% of Java online submissions for 01 Matrix.
