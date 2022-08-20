@@ -82,3 +82,60 @@ class Solution {
 }
 // TC: O(max(|x|, |y|)^2); SC: O(max(|x|, |y|)^2)
 // TLE
+
+// Solution 2
+class Solution {    
+    public int minKnightMoves(int x, int y) {
+        int cnt = 0;
+        int[][] DIRS = new int[][] {{1, 2}, {1, -2}, {2, 1}, {2, -1}, {-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
+        
+        Queue<int[]> queue = new ArrayDeque<>();
+        int[] src = new int[] {0, 0};
+        queue.offer(src);
+        
+        boolean[][] visited = new boolean[607][607];
+        visited[0][0] = true;
+        
+        boolean brk = false;
+        
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            
+            while (len > 0) {
+                int[] cur = queue.poll();
+        
+                len--;
+            
+                if (cur[0] == x && cur[1] == y) {
+                    brk = true;
+                    
+                    break;
+                }
+
+                for (int[] dir : DIRS) {
+                    int nxtX = cur[0] + dir[0];
+                    int nxtY = cur[1] + dir[1];
+                    int[] nxt = new int[] {nxtX, nxtY};
+
+                    if (!visited[nxtX + 302][nxtY + 302]) {
+                        queue.offer(nxt);
+                        visited[nxtX + 302][nxtY + 302] = true;
+                    }
+                }
+            }
+            
+            if (brk) {
+                break;
+            }
+            
+            cnt++;
+        }
+        
+        return cnt;  
+    }
+}
+// TC: O(max(|x|, |y|)^2); SC: O(max(|x|, |y|)^2)
+// Success
+// Details 
+// Runtime: 325 ms, faster than 57.07% of Java online submissions for Minimum Knight Moves.
+// Memory Usage: 162 MB, less than 41.52% of Java online submissions for Minimum Knight Moves.
